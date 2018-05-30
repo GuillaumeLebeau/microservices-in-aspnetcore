@@ -4,6 +4,7 @@ using ShoppingCart.Store;
 namespace ShoppingCart.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class EventsController : ControllerBase
     {
         private readonly IEventStore _eventStore;
@@ -13,6 +14,7 @@ namespace ShoppingCart.Controllers
             _eventStore = eventStore;
         }
 
+        [HttpGet]
         public IActionResult Get(
             [FromQuery] long firstEventSequenceNumber = 0,
             [FromQuery] long lastEventSequenceNumber = long.MaxValue)

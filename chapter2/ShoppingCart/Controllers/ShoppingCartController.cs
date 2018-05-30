@@ -6,6 +6,7 @@ using ShoppingCart.Store;
 namespace ShoppingCart.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class ShoppingCartController : ControllerBase
     {
         private readonly IEventStore _eventStore;
