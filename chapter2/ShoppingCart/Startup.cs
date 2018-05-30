@@ -23,7 +23,7 @@ namespace ShoppingCart
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddScoped<IShoppingCartStore, ShoppingCartStore>();
-            services.AddSingleton<IEventStore, EventStore>();
+            services.AddScoped<IEventStore, EventStore>();
             services.AddSingleton<IProductCatalogClient, ProductCatalogClient>();
         }
 
@@ -32,10 +32,7 @@ namespace ShoppingCart
         {
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-            else
-                app.UseHsts();
 
-            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
