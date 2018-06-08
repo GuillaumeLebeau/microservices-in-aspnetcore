@@ -6,13 +6,13 @@
         {
             ProductCatalogId = productCatalogId;
             ProductName = productName;
-            Desscription = description;
+            Description = description;
             Price = price;
         }
 
         public int ProductCatalogId { get; }
         public string ProductName { get; }
-        public string Desscription { get; }
+        public string Description { get; }
         public Money Price { get; }
 
         public override bool Equals(object obj)
