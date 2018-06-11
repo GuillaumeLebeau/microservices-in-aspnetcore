@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  productcatalog:
+    image: productcatalog
+    build:
+      context: ./ProductCatalog
+      dockerfile: Dockerfile
+        
+  shoppingcart:
+    image: shoppingcart
+    build:
+      context: ./ShoppingCart
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+      - eventstore
+  
+  postgres:
+    image: postgres:10-alpine
+      
+  eventstore:
+    image: eventstore/eventstore:release-4.1.0

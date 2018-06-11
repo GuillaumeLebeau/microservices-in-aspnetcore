@@ -1,0 +1,36 @@
+version: '3.4'
+
+services:
+  productcatalog:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5001:80"
+        
+  shoppingcart:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ConnectionString=Server=postgres;Database=postgres;User Id=postgres;Password=Pass@word
+      - EventStoreConnectionString=ConnectTo=tcp://admin:changeit@eventstore:1113/
+      - EventStoreType=EventStore
+      - ProductCatalogUrl=http://productcatalog
+#      - ProductCatalogUrl=http://private-05cc8-chapter2productcataloguemicroservice.apiary-mock.com
+    ports:
+      - "5000:80"
+  
+  postgres:
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=Pass@word
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      
+  eventstore:
+    ports:
+      - "2113:2113"
+      
+volumes:
+  db-data:
